@@ -32,16 +32,15 @@ class Question{
   static Find(id) {
     const sql = `SELECT * FROM questions WHERE id = (?)`;
     return new Promise(function(resolve){
-      const question = new Question();
-      resolve(question);
-      // db.get(sql, [id], function(err, result){
-      //   id = this.id;
-      //   resolve(id);
-      // })
+      db.get(sql, [id], function(err, result){
+        const question = new Question();
+        question.id = result.id;
+        resolve(question);
+
+      })
     })
 
   }
-
 }
 
 module.exports = Question;
